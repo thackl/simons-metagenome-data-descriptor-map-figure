@@ -1,0 +1,212 @@
+Campaign	Station	Date/Time	Date/Time 2	Latitude	Longitude	Sampling	Depth, nominal (corresponding to a surface wa...)	Depth, nominal (corresponding to a deep chlor...)	Depth, nominal (corresponding to a layer with...)	Depth, nominal (corresponding to a mesopelagi...)	Depth, nominal (corresponding to an oxygen mi...)
+TARA_20090905Z	TARA_001	2009-09-07T00:00	2009-09-07T00:00	44.415	-9.833	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20090905Z	TARA_002	2009-09-09T00:00	2009-09-09T00:00	39.038	-10.790	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20090913Z	TARA_003	2009-09-13T00:00	2009-09-13T00:00	36.672	-10.421	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20090913Z	TARA_004	2009-09-15T00:00	2009-09-15T00:00	36.563	-6.553	2	5 m	40 m	not sampled	not sampled	not sampled
+TARA_20090919Z	TARA_005	2009-09-20T00:00	2009-09-20T00:00	36.030	-4.405	2	5 m	68 m	not sampled	not sampled	not sampled
+TARA_20090919Z	TARA_006	2009-09-21T00:00	2009-09-21T00:00	36.529	-4.251	2	5 m	35 m	not sampled	not sampled	not sampled
+TARA_20090919Z	TARA_007	2009-09-23T00:00	2009-09-23T00:00	37.031	1.948	2	5 m	42 m	not sampled	not sampled	not sampled
+TARA_20090926Z	TARA_008	2009-09-27T00:00	2009-09-27T00:00	38.011	3.966	2	5 m	41 & 45 m	not sampled	not sampled	not sampled
+TARA_20090926Z	TARA_009	2009-09-28T00:00	2009-09-28T00:00	39.112	5.819	2	5 m	55 & 60 m	not sampled	not sampled	not sampled
+TARA_20090926Z	TARA_010	2009-09-30T00:00	2009-09-30T00:00	40.668	2.865	3	5 m	70-110 m	35 & 160 m	not sampled	not sampled
+TARA_20090926Z	TARA_011	2009-10-04T00:00	2009-10-04T00:00	41.666	2.798	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091011Z	TARA_012	2009-10-11T00:00	2009-10-11T00:00	43.348	7.899	2	5 m	50 m	not sampled	not sampled	not sampled
+TARA_20091011Z	TARA_013	2009-10-14T00:00	2009-10-14T00:00	37.987	8.068	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20091019Z	TARA_014	2009-10-20T00:00	2009-10-20T00:00	39.902	12.858	1	5 m	85 m	not sampled	not sampled	not sampled
+TARA_20091025Z	TARA_015	2009-10-25T00:00	2009-10-26T00:00	38.933	14.530	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091025Z	TARA_016	2009-10-27T00:00	2009-10-27T00:00	37.398	15.454	2	5 m	65 m	not sampled	not sampled	not sampled
+TARA_20091025Z	TARA_017	2009-10-28T00:00	2009-10-28T00:00	36.258	14.306	1	5 m	90 m	not sampled	not sampled	not sampled
+TARA_20091031Z	TARA_018	2009-11-02T00:00	2009-11-02T00:00	35.756	14.287	2	5 m	60 & 80 m	not sampled	not sampled	not sampled
+TARA_20091108Z	TARA_019	2009-11-11T00:00	2009-11-11T00:00	34.215	13.865	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091111Z	TARA_020	2009-11-12T00:00	2009-11-12T00:00	34.451	14.973	2	5 m	100 m	not sampled	not sampled	not sampled
+TARA_20091111Z	TARA_021	2009-11-15T00:00	2009-11-15T00:00	37.511	17.285	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091111Z	TARA_022	2009-11-16T00:00	2009-11-16T00:00	39.729	17.400	2	5 m	30 & 60 m	not sampled	not sampled	not sampled
+TARA_20091111Z	TARA_023	2009-11-18T00:00	2009-11-18T00:00	42.176	17.729	3	5 m	50 & 55 m	not sampled	not sampled	not sampled
+TARA_20091111Z	TARA_024	2009-11-21T00:00	2009-11-21T00:00	42.457	17.956	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091122Z	TARA_025	2009-11-23T00:00	2009-11-23T00:00	39.333	19.421	3	5 m	50 m	not sampled	not sampled	not sampled
+TARA_20091122Z	TARA_026	2009-11-24T00:00	2009-11-24T00:00	38.431	20.188	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20091128Z	TARA_027	2009-12-04T00:00	2009-12-04T00:00	34.094	32.934	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20091128Z	TARA_028	2009-12-04T00:00	2009-12-04T00:00	34.279	32.985	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20091214Z	TARA_029	2009-12-14T00:00	2009-12-14T00:00	33.928	35.342	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20091214Z	TARA_030	2009-12-15T00:00	2009-12-15T00:00	33.929	32.789	3	5 m	70 m	not sampled	not sampled	not sampled
+TARA_20100108Z	TARA_031	2010-01-09T00:00	2010-01-09T00:00	27.151	34.819	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100108Z	TARA_032	2010-01-11T00:00	2010-01-11T00:00	23.391	37.254	3	5 m	80 m	not sampled	not sampled	not sampled
+TARA_20100108Z	TARA_033	2010-01-13T00:00	2010-01-13T00:00	22.057	38.218	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100118Z	TARA_034	2010-01-20T00:00	2010-01-20T00:00	18.445	39.884	3	5 m	60 m	not sampled	not sampled	not sampled
+TARA_20100309Z	TARA_036	2010-03-12T00:00	2010-03-12T00:00	20.824	63.525	3	5 m	17 & 20 m	not sampled	not sampled	not sampled
+TARA_20100309Z	TARA_037	2010-03-12T00:00	2010-03-13T00:00	20.828	63.600	3	5 m	not sampled	not sampled	600 m	600 m
+TARA_20100309Z	TARA_038	2010-03-15T00:00	2010-03-16T00:00	19.017	64.576	3	5 m	25 m	not sampled	340 m	340 m
+TARA_20100309Z	TARA_039	2010-03-18T00:00	2010-03-20T00:00	18.647	66.463	3	5 m	25 m	not sampled	270 m	270 m
+TARA_20100309Z	TARA_040	2010-03-22T00:00	2010-03-22T00:00	17.500	67.984	3	5 m	25 m	50, 75, 100 m	285 m	285 m
+TARA_20100327Z	TARA_041	2010-03-29T00:00	2010-03-30T00:00	14.582	70.011	3	5 m	60 & 70 m	not sampled	not sampled	not sampled
+TARA_20100327Z	TARA_042	2010-04-04T00:00	2010-04-04T00:00	5.992	73.919	3	5 m	80 m	not sampled	not sampled	not sampled
+TARA_20100327Z	TARA_043	2010-04-05T00:00	2010-04-05T00:00	4.660	73.489	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100410Z	TARA_044	2010-04-11T00:00	2010-04-11T00:00	2.806	71.520	3	5 m	not sampled	not sampled	195 m	not sampled
+TARA_20100410Z	TARA_045	2010-04-12T00:00	2010-04-13T00:00	0.941	71.710	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100410Z	TARA_046	2010-04-15T00:00	2010-04-15T00:00	-0.659	73.162	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100410Z	TARA_047	2010-04-16T00:00	2010-04-16T00:00	-2.042	72.164	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100410Z	TARA_048	2010-04-19T00:00	2010-04-19T00:00	-9.409	66.320	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100410Z	TARA_049	2010-04-23T00:00	2010-04-23T00:00	-16.808	59.504	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100508Z	TARA_050	2010-05-08T00:00	2010-05-09T00:00	-21.476	56.795	3	5 m	120 m	not sampled	not sampled	not sampled
+TARA_20100508Z	TARA_051	2010-05-10T00:00	2010-05-11T00:00	-21.476	54.283	2	5 m	80 & 85 m	not sampled	not sampled	not sampled
+TARA_20100515Z	TARA_052	2010-05-17T00:00	2010-05-17T00:00	-17.023	53.508	3	5 m	70 & 75 m	not sampled	not sampled	not sampled
+TARA_20100523Z	TARA_053	2010-05-24T00:00	2010-05-25T00:00	-13.070	46.923	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100523Z	TARA_054	2010-05-25T00:00	2010-05-26T00:00	-12.813	45.226	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_055	2010-06-25T00:00	2010-06-25T00:00	-14.219	43.985	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_056	2010-06-26T00:00	2010-06-26T00:00	-15.332	43.290	2	5 m	not sampled	not sampled	1000 m	not sampled
+TARA_20100624Z	TARA_057	2010-06-27T00:00	2010-06-28T00:00	-17.026	42.742	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_058	2010-06-28T00:00	2010-06-29T00:00	-17.455	42.320	3	5 m	66 & 70 m	not sampled	1000 m	not sampled
+TARA_20100624Z	TARA_059	2010-06-30T00:00	2010-06-30T00:00	-19.063	40.803	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_060	2010-07-01T00:00	2010-07-01T00:00	-20.233	40.090	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_061	2010-07-02T00:00	2010-07-02T00:00	-21.366	39.547	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_062	2010-07-03T00:00	2010-07-04T00:00	-22.339	40.182	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_063	2010-07-05T00:00	2010-07-05T00:00	-24.482	38.688	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20100624Z	TARA_064	2010-07-07T00:00	2010-07-08T00:00	-29.508	37.929	3	5 m	60 & 65 m	not sampled	1000 m	not sampled
+TARA_20100624Z	TARA_065	2010-07-12T00:00	2010-07-12T00:00	-35.226	26.334	3	5 m	30 m	not sampled	850 m	not sampled
+TARA_20100624Z	TARA_066	2010-07-15T00:00	2010-07-15T00:00	-34.905	18.016	2	5 m	30 m	not sampled	not sampled	not sampled
+TARA_20100905Z	TARA_067	2010-09-06T00:00	2010-09-08T00:00	-32.292	17.206	3	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20100905Z	TARA_068	2010-09-12T00:00	2010-09-14T00:00	-31.039	4.620	3	5 m	50 m	not sampled	700 m	not sampled
+TARA_20100905Z	TARA_069	2010-09-17T00:00	2010-09-18T00:00	-24.125	2.609	1	not sampled	80 m	not sampled	not sampled	not sampled
+TARA_20100905Z	TARA_070	2010-09-21T00:00	2010-09-22T00:00	-20.229	-3.413	3	5 m	not sampled	not sampled	800 m	not sampled
+TARA_20100905Z	TARA_071	2010-09-28T00:00	2010-09-28T00:00	-9.213	-9.728	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20101003Z	TARA_072	2010-10-04T00:00	2010-10-06T00:00	-8.691	-18.006	3	5 m	100 m	not sampled	800 m	not sampled
+TARA_20101003Z	TARA_073	2010-10-09T00:00	2010-10-09T00:00	-12.504	-24.434	2	5 m	150 m	not sampled	not sampled	not sampled
+TARA_20101003Z	TARA_074	2010-10-12T00:00	2010-10-12T00:00	-16.036	-28.957	2	5 m	170 m	not sampled	not sampled	not sampled
+TARA_20101003Z	TARA_075	2010-10-14T00:00	2010-10-14T00:00	-18.000	-32.718	2	5 m	160 m	not sampled	not sampled	not sampled
+TARA_20101003Z	TARA_076	2010-10-16T00:00	2010-10-17T00:00	-21.029	-35.231	3	5 m	150 m	not sampled	800 m	not sampled
+TARA_20101031Z	TARA_077	2010-11-01T00:00	2010-11-01T00:00	-24.577	-43.840	2	5 m	100 m	not sampled	not sampled	not sampled
+TARA_20101031Z	TARA_078	2010-11-03T00:00	2010-11-06T00:00	-30.158	-43.323	3	5 m	120 m	not sampled	800 m	not sampled
+TARA_20101031Z	TARA_079a	2010-11-08T00:00	2010-11-08T00:00	-34.458	-47.660	2	5 m	60 m	not sampled	not sampled	not sampled
+TARA_20101126Z	TARA_079b	2010-11-26T00:00	2010-11-26T00:00	-35.502	-55.163	2	5 m	12 m	not sampled	not sampled	not sampled
+TARA_20101126Z	TARA_080	2010-11-29T00:00	2010-11-29T00:00	-40.699	-51.952	3	5 m	85 m	not sampled	not sampled	not sampled
+TARA_20101126Z	TARA_081	2010-12-02T00:00	2010-12-03T00:00	-44.497	-52.214	3	5 m	35 m	not sampled	not sampled	not sampled
+TARA_20101126Z	TARA_082	2010-12-06T00:00	2010-12-07T00:00	-47.165	-58.012	2	5 m	30 & 40 m	not sampled	not sampled	not sampled
+TARA_20101126Z	TARA_083	2010-12-16T00:00	2010-12-16T00:00	-54.418	-65.023	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20101231Z	TARA_084	2011-01-03T00:00	2011-01-04T00:00	-60.395	-60.471	3	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20101231Z	TARA_085	2011-01-06T00:00	2011-01-07T00:00	-62.176	-49.503	3	5 m	90 m	not sampled	790 m	not sampled
+TARA_20101231Z	TARA_086	2011-01-09T00:00	2011-01-09T00:00	-64.309	-53.057	2	5 m	35 m	not sampled	not sampled	not sampled
+TARA_20101231Z	TARA_087	2011-01-17T00:00	2011-01-17T00:00	-63.853	-56.137	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20101231Z	TARA_088	2011-01-22T00:00	2011-01-22T00:00	-63.386	-56.806	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20101231Z	TARA_089	2011-01-27T00:00	2011-01-27T00:00	-57.764	-67.419	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110220Z	TARA_090	2011-02-21T00:00	2011-02-21T00:00	-39.587	-76.990	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110220Z	TARA_091	2011-02-25T00:00	2011-02-25T00:00	-34.174	-73.085	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110220Z	TARA_092	2011-02-26T00:00	2011-02-26T00:00	-33.697	-71.977	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110311Z	TARA_093	2011-03-11T00:00	2011-03-13T00:00	-33.762	-72.615	3	5 m	35 m	not sampled	not sampled	not sampled
+TARA_20110311Z	TARA_094	2011-03-16T00:00	2011-03-18T00:00	-32.765	-87.093	3	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110311Z	TARA_095	2011-03-19T00:00	2011-03-21T00:00	-31.386	-93.986	3	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110311Z	TARA_096	2011-03-24T00:00	2011-03-25T00:00	-29.655	-101.268	3	5 m	155 m	not sampled	not sampled	not sampled
+TARA_20110311Z	TARA_097	2011-03-27T00:00	2011-03-29T00:00	-28.169	-107.668	3	5 m	175 m	not sampled	310 m	not sampled
+TARA_20110401Z	TARA_098	2011-04-02T00:00	2011-04-06T00:00	-26.261	-110.992	3	5 m	180 & 188 m	not sampled	488 m	not sampled
+TARA_20110401Z	TARA_099	2011-04-09T00:00	2011-04-10T00:00	-21.141	-104.852	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110401Z	TARA_100	2011-04-14T00:00	2011-04-16T00:00	-13.162	-96.283	3	5 m	50 & 177 m	not sampled	not sampled	177 m
+TARA_20110401Z	TARA_101	2011-04-19T00:00	2011-04-19T00:00	-8.627	-89.485	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110401Z	TARA_102	2011-04-21T00:00	2011-04-23T00:00	-5.218	-85.270	3	5 m	40 m	not sampled	480 m	480 m
+TARA_20110501Z	TARA_103	2011-05-02T00:00	2011-05-02T00:00	-1.498	-84.584	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110501Z	TARA_104	2011-05-02T00:00	2011-05-02T00:00	-0.991	-84.592	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110501Z	TARA_105	2011-05-03T00:00	2011-05-03T00:00	-0.491	-84.588	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110501Z	TARA_106	2011-05-03T00:00	2011-05-05T00:00	0.037	-84.620	3	5 m	40 & 50 m	not sampled	380 m	380 m
+TARA_20110509Z	TARA_107	2011-05-11T00:00	2011-05-11T00:00	0.488	-84.581	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110509Z	TARA_108	2011-05-11T00:00	2011-05-11T00:00	1.013	-84.583	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20110509Z	TARA_109	2011-05-12T00:00	2011-05-13T00:00	1.800	-84.545	3	5 m	30 & 40 m	not sampled	380 m	380 m
+TARA_20110520Z	TARA_110	2011-05-21T00:00	2011-05-23T00:00	-1.913	-84.616	3	5 m	50 m	not sampled	380 m	380 m
+TARA_20110520Z	TARA_111	2011-05-31T00:00	2011-06-02T00:00	-16.932	-100.662	3	5 m	90 m	not sampled	350 m	350 m
+TARA_20110520Z	TARA_112	2011-06-14T00:00	2011-06-16T00:00	-23.220	-129.578	3	5 m	155, 165 & 170 m	not sampled	696 m	not sampled
+TARA_20110520Z	TARA_113	2011-06-19T00:00	2011-06-19T00:00	-23.114	-134.920	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_114	2011-06-26T00:00	2011-06-26T00:00	-23.130	-134.912	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_115	2011-06-28T00:00	2011-06-29T00:00	-23.216	-134.931	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_116	2011-06-30T00:00	2011-06-30T00:00	-23.217	-134.931	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_117	2011-07-01T00:00	2011-07-01T00:00	-23.129	-135.016	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_118	2011-07-01T00:00	2011-07-02T00:00	-23.129	-135.009	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_119	2011-07-06T00:00	2011-07-06T00:00	-23.012	-134.912	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_120	2011-07-06T00:00	2011-07-06T00:00	-23.012	-134.912	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110626Z	TARA_121	2011-07-09T00:00	2011-07-09T00:00	-23.050	-134.959	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110726Z	TARA_122	2011-07-26T00:00	2011-07-29T00:00	-8.969	-139.338	3	5 m	115 m	not sampled	600 m	not sampled
+TARA_20110726Z	TARA_123	2011-07-31T00:00	2011-08-02T00:00	-8.879	-140.304	3	5 m	not sampled	150 m	not sampled	not sampled
+TARA_20110726Z	TARA_124	2011-08-04T00:00	2011-08-05T00:00	-8.999	-140.588	3	5 m	not sampled	120 m	not sampled	not sampled
+TARA_20110726Z	TARA_125	2011-08-08T00:00	2011-08-09T00:00	-8.890	-142.610	3	5 m	not sampled	140 & 150 m	not sampled	not sampled
+TARA_20110826Z	TARA_126	2011-08-28T00:00	2011-08-29T00:00	-11.975	-151.208	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110826Z	TARA_127	2011-08-31T00:00	2011-09-02T00:00	-6.620	-152.568	3	5 m	100 m	not sampled	not sampled	not sampled
+TARA_20110826Z	TARA_128	2011-09-03T00:00	2011-09-05T00:00	-0.469	-153.305	3	5 m	40 m	not sampled	400 m	400 m
+TARA_20110826Z	TARA_129	2011-09-10T00:00	2011-09-11T00:00	6.732	-153.089	3	5 m	80 & 85 m	not sampled	not sampled	not sampled
+TARA_20110826Z	TARA_130	2011-09-13T00:00	2011-09-13T00:00	11.265	-152.462	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110928Z	TARA_131	2011-09-29T00:00	2011-10-01T00:00	22.747	-158.052	3	5 m	110 m	not sampled	746 m	not sampled
+TARA_20110928Z	TARA_132	2011-10-04T00:00	2011-10-06T00:00	31.506	-159.014	3	5 m	115 m	not sampled	550 m	not sampled
+TARA_20110928Z	TARA_133	2011-10-18T00:00	2011-10-20T00:00	35.343	-127.750	3	5 m	45 m	not sampled	650 m	not sampled
+TARA_20110928Z	TARA_134	2011-10-22T00:00	2011-10-22T00:00	32.667	-121.986	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20110928Z	TARA_135	2011-10-23T00:00	2011-10-24T00:00	32.983	-121.832	3	5 m	30 m	not sampled	650 m	not sampled
+TARA_20111124Z	TARA_136	2011-11-30T00:00	2011-12-01T00:00	17.022	-118.914	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20111124Z	TARA_137	2011-12-02T00:00	2011-12-04T00:00	14.161	-116.699	3	5 m	40 & 110 m	not sampled	375 m	375 m
+TARA_20111124Z	TARA_138	2011-12-10T00:00	2011-12-12T00:00	6.215	-103.017	3	5 m	60 m	not sampled	450 m	450 m
+TARA_20111124Z	TARA_139	2011-12-15T00:00	2011-12-16T00:00	6.491	-95.449	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20111124Z	TARA_140	2011-12-21T00:00	2011-12-22T00:00	7.471	-79.312	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20111230Z	TARA_141	2011-12-30T00:00	2011-12-30T00:00	9.834	-80.086	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20111230Z	TARA_142	2012-01-08T00:00	2012-01-10T00:00	25.602	-88.417	3	5 m	125 m	not sampled	640 m	not sampled
+TARA_20111230Z	TARA_143	2012-01-16T00:00	2012-01-17T00:00	29.885	-79.682	3	5 m	40 m	not sampled	300 m	not sampled
+TARA_20120126Z	TARA_144	2012-01-29T00:00	2012-01-31T00:00	36.369	-72.815	3	5 m	not sampled	not sampled	390 m	not sampled
+TARA_20120126Z	TARA_145	2012-02-02T00:00	2012-02-04T00:00	39.163	-70.076	3	5 m	not sampled	not sampled	590 m	590 m
+TARA_20120212Z	TARA_146	2012-02-15T00:00	2012-02-16T00:00	34.731	-71.248	3	5 m	not sampled	not sampled	640 m	not sampled
+TARA_20120212Z	TARA_147	2012-02-18T00:00	2012-02-19T00:00	32.954	-66.533	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20120223Z	TARA_148	2012-02-24T00:00	2012-02-25T00:00	31.782	-64.145	3	5 m	not sampled	5-800 m	not sampled	not sampled
+TARA_20120223Z	TARA_148b	2012-02-27T00:00	2012-02-27T00:00	34.027	-56.876	1	not sampled	not sampled	not sampled	250 m	not sampled
+TARA_20120223Z	TARA_149	2012-02-29T00:00	2012-03-01T00:00	34.098	-49.840	3	5 m	not sampled	5-50 m	740 m	not sampled
+TARA_20120223Z	TARA_150	2012-03-05T00:00	2012-03-06T00:00	35.800	-37.102	3	5 m	40 m	5-80 m	not sampled	not sampled
+TARA_20120223Z	TARA_151	2012-03-09T00:00	2012-03-10T00:00	36.194	-28.801	3	5 m	80 m	5-50 m	not sampled	not sampled
+TARA_20120314Z	TARA_152	2012-03-18T00:00	2012-03-20T00:00	43.668	-16.662	3	5 m	not sampled	25 m & 5-160m	800 m	not sampled
+TARA_20120314Z	TARA_153	2012-03-24T00:00	2012-03-24T00:00	44.034	-16.564	3	not sampled	not sampled	25 m & 5-160m	not sampled	not sampled
+TARA_20120314Z	TARA_154	2012-03-26T00:00	2012-03-26T00:00	44.354	-10.094	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_155	2013-05-24T00:00	2013-05-25T00:00	54.597	-16.755	3	5 m	40 m	not sampled	751 m	not sampled
+TARA_20130519Z	TARA_156	2013-05-29T00:00	2013-05-29T00:00	60.923	-7.879	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_157	2013-06-02T00:00	2013-06-02T00:00	65.676	-1.759	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_158	2013-06-03T00:00	2013-06-04T00:00	67.193	0.374	3	5 m	25 m	not sampled	651 m	not sampled
+TARA_20130519Z	TARA_159	2013-06-05T00:00	2013-06-05T00:00	68.994	2.157	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_160	2013-06-06T00:00	2013-06-06T00:00	70.373	3.678	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_161	2013-06-07T00:00	2013-06-07T00:00	72.375	3.935	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_162	2013-06-08T00:00	2013-06-08T00:00	74.247	3.908	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_163	2013-06-09T00:00	2013-06-10T00:00	76.078	1.689	3	5 m	not sampled	not sampled	499 m	not sampled
+TARA_20130519Z	TARA_164	2013-06-11T00:00	2013-06-11T00:00	74.597	6.554	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_165	2013-06-12T00:00	2013-06-12T00:00	73.444	10.233	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130519Z	TARA_166	2013-06-13T00:00	2013-06-13T00:00	71.208	14.662	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_167	2013-06-30T00:00	2013-06-30T00:00	71.033	38.714	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_168	2013-07-01T00:00	2013-07-02T00:00	72.582	44.126	3	5 m	40 m	10-100 m	not sampled	not sampled
+TARA_20130629Z	TARA_169	2013-07-03T00:00	2013-07-03T00:00	74.390	47.159	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_170	2013-07-04T00:00	2013-07-04T00:00	75.949	51.913	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_171	2013-07-05T00:00	2013-07-05T00:00	77.588	58.558	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_172	2013-07-06T00:00	2013-07-06T00:00	77.967	67.897	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_173	2013-07-08T00:00	2013-07-08T00:00	78.939	75.345	2	5 m	33 & 35 m	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_174	2013-07-09T00:00	2013-07-09T00:00	79.045	71.624	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_175	2013-07-10T00:00	2013-07-11T00:00	79.343	66.384	3	5 m	not sampled	10-100 m	not sampled	not sampled
+TARA_20130629Z	TARA_176	2013-07-13T00:00	2013-07-13T00:00	77.755	67.391	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_177	2013-07-14T00:00	2013-07-14T00:00	77.901	71.747	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_178	2013-07-15T00:00	2013-07-15T00:00	77.234	73.235	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_179	2013-07-17T00:00	2013-07-17T00:00	75.541	74.572	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_180	2013-07-17T00:00	2013-07-18T00:00	75.172	75.459	2	5 m	30 & 35 m	not sampled	not sampled	not sampled
+TARA_20130629Z	TARA_181	2013-07-19T00:00	2013-07-19T00:00	73.966	77.069	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_182	2013-08-04T00:00	2013-08-04T00:00	75.976	78.563	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_183	2013-08-05T00:00	2013-08-05T00:00	77.454	75.734	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_184	2013-08-06T00:00	2013-08-06T00:00	79.028	69.692	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_185	2013-08-11T00:00	2013-08-11T00:00	79.675	60.902	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_186	2013-08-12T00:00	2013-08-12T00:00	79.070	74.215	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_187	2013-08-14T00:00	2013-08-14T00:00	78.142	86.523	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_188	2013-08-15T00:00	2013-08-15T00:00	78.304	91.725	2	5 m	17, 18 & 20 m	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_189	2013-08-27T00:00	2013-08-28T00:00	78.022	116.482	3	5 m	20 & 35 m	not sampled	299 m	not sampled
+TARA_20130801Z	TARA_190	2013-09-01T00:00	2013-09-02T00:00	73.858	145.846	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_191	2013-09-02T00:00	2013-09-03T00:00	71.549	160.961	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20130801Z	TARA_192	2013-09-03T00:00	2013-09-04T00:00	70.733	166.310	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_193	2013-09-08T00:00	2013-09-08T00:00	71.115	174.901	1	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_194	2013-09-11T00:00	2013-09-12T00:00	73.336	-168.518	2	5 m	35 m	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_195	2013-09-13T00:00	2013-09-13T00:00	72.213	-159.703	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_196	2013-09-14T00:00	2013-09-15T00:00	71.895	-154.934	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_197	2013-09-15T00:00	2013-09-16T00:00	71.336	-148.662	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_198	2013-09-16T00:00	2013-09-16T00:00	71.474	-141.884	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130907Z	TARA_199	2013-09-17T00:00	2013-09-17T00:00	70.396	-140.334	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130921Z	TARA_200	2013-09-27T00:00	2013-09-27T00:00	71.986	-93.543	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130921Z	TARA_201	2013-09-29T00:00	2013-10-01T00:00	74.329	-85.729	3	5 m	35 & 36 m	not sampled	441 m	not sampled
+TARA_20130921Z	TARA_202	2013-10-03T00:00	2013-10-03T00:00	73.117	-85.053	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130921Z	TARA_203	2013-10-04T00:00	2013-10-05T00:00	73.070	-80.364	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130921Z	TARA_204	2013-10-06T00:00	2013-10-06T00:00	72.676	-78.443	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20130921Z	TARA_205	2013-10-08T00:00	2013-10-08T00:00	72.423	-71.952	3	5 m	not sampled	not sampled	491 m	not sampled
+TARA_20130921Z	TARA_206	2013-10-11T00:00	2013-10-13T00:00	70.939	-53.622	3	5 m	not sampled	not sampled	411 m	not sampled
+TARA_20130921Z	TARA_207	2013-10-15T00:00	2013-10-15T00:00	69.207	-52.852	1	not sampled	not sampled	not sampled	not sampled	not sampled
+TARA_20131020Z	TARA_208	2013-10-20T00:00	2013-10-20T00:00	69.107	-51.578	2	5 m	not sampled	not sampled	not sampled	not sampled
+TARA_20131020Z	TARA_209	2013-10-23T00:00	2013-10-23T00:00	64.728	-53.467	3	5 m	not sampled	not sampled	351 m	not sampled
+TARA_20131020Z	TARA_210	2013-10-27T00:00	2013-10-27T00:00	61.544	-55.985	3	5 m	not sampled	not sampled	390 m	not sampled

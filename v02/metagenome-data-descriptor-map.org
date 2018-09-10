@@ -1,0 +1,215 @@
+older maps
+
+#+BEGIN_SRC sh
+jn metagenome-data-descriptor-map.ipynb
+#+END_SRC
+
+
+#+BEGIN_SRC R
+library(rgdal) # project, also reads naturalearth data
+library(rgeos) # polygon splitting
+library(maps)
+library(maptools)
+library(raster)
+library(magrittr)
+library(tidyverse)
+library(sp)
+
+theme_set(theme_void(base_size=14))
+
+source("../th-maps.R") # convenience functions for plotting rotated and projected maps
+shift <- 90
+lat_min <- -70
+lat_max <- 70
+m <- world_map(shift, lat_min, lat_max,
+               long_breaks=seq(-170-shift, 170-shift, by=40))
+
+gg <- ggplot() +
+  #geom_polygon(data=m$map, aes(x=long, y=lat, group=group), fill="grey80", color="grey80") +
+  geom_map(map = m$map,fill="grey80", color="grey80") +
+    geom_graticule(projection = "robin", lat_min = lat_min, lat_max = lat_max, long_min = -270, long_max = 90, linetype = 1, color = "grey70", size = .5, alpha=.3) +
+    geom_graticule(projection = "robin", lat_min = lat_min, lat_max = lat_max, long_min = -270, long_max = 90, lat_length.out = 2, long_length.out = 2, linetype = 1, color = "grey70", size = 1) +
+    coord_equal(ylim = c(-80, 80)) +
+#    geom_text(aes(x=long, y=lat, label=label), m$long_labels, color ="grey50", position=position_nudge(y=-3)) +
+    #    geom_text(aes(x=long, y=lat, label=label), m$lat_labels, color ="grey50", position=position_nudge(x=-3))
+    geom_degree(projection = "robin", lat_min = lat_min, lat_max = lat_max, long_min = -270, long_max = 90, color="grey50")
+gg
+
+m$lat_labels
+
+dd2dms(-270)
+
+project <- function(lat, long, shift=0, projection="robin", projection_extra=NULL){
+    projection_opts=paste(paste0("+proj=", projection), paste0("+lon_0=", shift*-1), projection_extra)
+    rgdal::project(cbind(long, lat), proj=projection_opts)[,1]/10^5 - shift
+}
+
+#' Graticules
+#' 
+#' grid lines for maps
+#'
+#' inspired by https://gist.github.com/valentinitnelav/c7598fcfc8e53658f66feea9d3bafb40
+graticules <- function(
+  lat_min = -90, lat_max = 90, lat_by = 10, lat_length.out = NULL,
+  long_min = -180, long_max = 180, long_by = 20, long_length.out = NULL,
+  projection=NULL, projection_extra=NULL){
+
+  lat_breaks <- if(is.null(lat_length.out)){
+    seq(lat_min, lat_max, by=lat_by)
+  }else{
+    seq(lat_min, lat_max, length.out=lat_length.out)
+  }
+  
+  long_breaks <- if(is.null(long_length.out)){
+    seq(long_min, long_max, by=long_by)
+  }else{
+    seq(long_min, long_max, length.out=long_length.out)
+  }
+
+  # create a bounding box and assign CRS to box
+  box <- as(raster::extent(long_min, long_max, lat_min, lat_max), "SpatialPolygons")
+  
+  # create graticules/grid lines from box
+  # Spatial Lines
+  gl_args <- list(box)
+  if(length(lat_breaks > 0)) gl_args$norths <- lat_breaks
+  if(length(long_breaks > 0)) gl_args$easts <- long_breaks
+
+  graticules <- do.call(gridlines, gl_args) %>%
+    # to Spatial Lines Data Fram
+    SpatialLinesDataFrame(data=data.frame(1:length(.)), match.ID = FALSE) %>%
+    map_data # to data.frame
+
+  if(!is.null(projection))
+    graticules %<>% mutate(long=project(lat, long, shift=shift, projection=projection, projection_extra=projection_extra))
+    
+  graticules
+}
+
+
+graticules() %>% summary
+graticules(long_min = -270, long_max = 90, long_length.out = 2) %>% summary
+graticules(lat_min = -90, lat_max = 90, lat_length.out = 2, long_min = -270, long_max = 90, long_length.out = 2) %>% summary
+
+gg <- ggplot() +
+  geom_polygon(data=m$map, aes(x=long, y=lat, group=group), fill="grey80", color="grey80") + coord_equal(ylim = c(-80, 80))
+gg
+
+# thomasp85/ggraph https://github.com/thomasp85/ggraph/blob/master/R/aaa.R
+aes_intersect <- function(aes1, aes2) {
+    structure(
+        c(as.list(aes1), aes2[!names(aes2) %in% names(aes1)]),
+        class = 'uneval'
+    )
+}
+
+geom_graticule <- function(mapping = NULL, data = NULL, stat = "identity",
+    position = "identity", lat_min = -90, lat_max = 90, lat_by = 10,
+    lat_length.out = NULL, long_min = -180, long_max = 180, long_by = 20,
+    long_length.out = NULL, projection=NULL, projection_extra=NULL, ...,
+    na.rm = FALSE, show.legend = NA, inherit.aes = FALSE){
+
+  default_aes <- aes_(x=~long, y=~lat, group=~group)
+  mapping = aes_intersect(mapping, default_aes)
+
+  if(is.null(data)){
+    data <- graticules(lat_min=lat_min, lat_max=lat_max, lat_by=lat_by, lat_length.out=lat_length.out, long_min=long_min, long_max=long_max, long_by=long_by, long_length.out=long_length.out, projection=projection, projection_extra=projection_extra)
+  }
+  
+  geom_path(mapping = mapping, data = data, stat = stat, position = position, ..., na.rm = na.rm, show.legend = show.legend, inherit.aes = inherit.aes) 
+}
+
+
+
+wrap_dd <- function(r, shift=0){ # between -180 and 180
+    sapply(r, function(x){
+        if(is.na(x)) return(NA);
+        x <- x - (360*round((x-shift)/360))
+        if(x == -180) x <- 180 ## R round would alternate -180 and 180
+        return(x)})
+}
+
+#' use "°" for degree (instead of d), and also if no minutes
+pretty_dms <- function (x, ...){
+  if (!inherits(x, "DMS")) 
+    stop("not a DMS object")
+  if (!x@NS) 
+    tag <- c("W", "E")
+  else tag <- c("S", "N")
+  res <- ifelse(x@WS, tag[1], tag[2])
+  res <- paste(ifelse(round(x@sec, digits = 3) != "0", paste(round(x@sec, 
+                             digits = 3), "\"", sep = ""), ""), res, sep = "")
+  res <- paste(ifelse(((x@min != 0) | (round(x@sec, digits = 3) != 
+        "0")), paste("°", x@min, "'", sep = ""), ""), res, sep = "")
+  res <- paste(x@deg, "°", res, sep = "")
+  res
+}
+
+dd2dms(wrap_dd(-270), NS=TRUE) %>% pretty_dms
+
+degrees <- function(
+  lat_min = -90, lat_max = 90, lat_by = 10, lat_length.out = NULL,
+  lat_at = c(long_min, long_max), lat_nudge = 5,
+  long_min = -180, long_max = 180, long_by = 20, long_length.out = NULL,
+  long_at = c(lat_min, lat_max), long_nudge = 10,
+  projection=NULL, projection_extra=NULL){
+
+  lat_breaks <- if(is.null(lat_length.out)){
+    seq(lat_min, lat_max, by=lat_by)
+  }else{
+    seq(lat_min, lat_max, length.out=lat_length.out)
+  }
+  
+  long_breaks <- if(is.null(long_length.out)){
+    seq(long_min, long_max, by=long_by)
+  }else{
+    seq(long_min, long_max, length.out=long_length.out)
+  }
+
+  degrees_lat <- tibble(
+    lat = rep(lat_breaks, length(lat_at)),
+    long = rep(lat_at, each=length(lat_breaks)),
+    label = lat %>% wrap_dd %>% dd2dms(TRUE) %>% pretty_dms)
+
+  degrees_long <- tibble(
+    lat = rep(long_at, each=length(long_breaks)),
+    long = rep(long_breaks, length(long_at)),
+    label = long %>% wrap_dd %>% dd2dms() %>% pretty_dms)
+
+  if(!is.null(projection)){
+    degrees_lat <- mutate(degrees_lat, long=project(lat, long, shift=shift, projection=projection, projection_extra=projection_extra))
+    degrees_long <- mutate(degrees_long, long=project(lat, long, shift=shift, projection=projection, projection_extra=projection_extra))
+  }
+  
+  degrees_long <- mutate(degrees_long, lat = ifelse(lat >0, lat + lat_nudge, lat - lat_nudge))
+  degrees_lat <- mutate(degrees_lat, long = ifelse(long >0, long + long_nudge, long - long_nudge))
+
+  bind_rows(degrees_lat, degrees_long)
+}
+
+degrees()
+
+geom_degree <- function(
+  mapping = NULL, data = NULL, stat = "identity", position = "identity",
+  lat_min = -90, lat_max = 90, lat_by = 10, lat_length.out = NULL,
+  lat_at = c(long_min, long_max), lat_nudge = 5,
+  long_min = -180, long_max = 180, long_by = 20, long_length.out = NULL,
+  long_at = c(lat_min, lat_max), long_nudge = 10,
+  projection=NULL, projection_extra=NULL, ...,
+    na.rm = FALSE, show.legend = NA, inherit.aes = FALSE){
+
+  default_aes <- aes_(x=~long, y=~lat, label=~label)
+  mapping = aes_intersect(mapping, default_aes)
+
+  if(is.null(data)){
+    data <- degrees(
+      lat_min=lat_min, lat_max=lat_max, lat_by=lat_by, lat_length.out=lat_length.out, lat_at=lat_at, lat_nudge=lat_nudge,
+      long_min=long_min, long_max=long_max, long_by=long_by, long_length.out=long_length.out, long_at=long_at, long_nudge=long_nudge,
+      projection=projection, projection_extra=projection_extra)
+  }
+  
+  geom_text(mapping = mapping, data = data, stat = stat, position = position, ..., na.rm = na.rm, show.legend = show.legend, inherit.aes = inherit.aes) 
+}
+
+tibble(x=1:3, y=x)
+#+END_SRC

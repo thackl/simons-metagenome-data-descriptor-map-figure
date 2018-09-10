@@ -1,0 +1,403 @@
+
+
+#+BEGIN_SRC sh
+(cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga02.tsv) > curated_geotraces_metadata_ga02.tsv;
+(cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga03.tsv) > curated_geotraces_metadata_ga03.tsv;
+(cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga10.tsv) > curated_geotraces_metadata_ga10.tsv;
+(cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_gp13.tsv) > curated_geotraces_metadata_gp13.tsv;
+
+excel2tsv GOS_latlong_fromGOLD.xlsx
+mv GOS_latlong_fromGOLD.tsv.0 GOS_latlong_fromGOLD.tsv
+sed -i '/^\s*$/d' GOS_latlong_fromGOLD.tsv   # remove empty lines
+
+# extract the right section and columns
+sed -n '/^Campaign/,$p' TARA_reg_stations.tab.tsv |
+ cut -f1-6,25-30 > TARA_stations.tsv
+
+#+END_SRC
+
+
+#+BEGIN_SRC R
+library(tidyverse)
+library(stringr)
+qc <- wrapr::qc
+
+library(sp)
+devtools::load_all("/home/thackl/projects/coding/code/ggworldmap", export_all=FALSE)
+
+# rotate and project --------------------------------------------------
+# need this here, need long_0 to get distances right
+proj <- "robin"
+long_0 <- -90  # center in Pacific
+
+
+# distances --------------------------------------------------
+library(geosphere)
+
+distance <- function(.data, lat = lat, long = long, lat_from = NULL, long_from = NULL, dist_col = "dist", along = TRUE, ...){
+
+  ll_vars <- ggworldmap:::vars_lat_long(names(.data), !! rlang::enquo(lat), !! rlang::enquo(long))
+
+  ll <- as.matrix(.data[rev(ll_vars)])
+  
+  if(is.null(long_from) && is.null(lat_from)){
+    dists <- geosphere::distVincentyEllipsoid(ll, ...)
+  }else{
+    dists <- geosphere::distVincentyEllipsoid(ll, c(long_from, lat_from), ...)
+  }
+
+  if(is.null(dist_col)) return(dists)
+  # prepend NA in case of sequential distances
+  if(length(dists) == nrow(.data) - 1) dists <- c(0, dists)
+
+  if(along) dists <- cumsum(dists)
+  
+  .data[dist_col] <- dists
+  .data
+}
+ 
+tibble(lat=-32.5001, long=-170) %>%
+  distance(lat_from=-32.492, long_from=-169.994)
+
+stations <- tibble(
+  lat=c(50,55,60),
+  long=c(180,180,180)
+)
+# cumulative distance between transect stations
+stations %>% distance
+
+# distance to almost Greenwich
+stations %>% distance(lat_from=0, long_from=0, along=FALSE)
+
+
+## add indices, preserve order (first occurence)
+index_by <- function(.data, ...){
+  keys <- select(.data, ...) %>% apply(1, paste0, collapse="_")
+
+  if(length(keys) == 0) stop("no keys to index by found\n")
+
+  i <- "i"
+  while(i %in% names(.data)) i <- paste0(i,"i")
+  
+  lvls <- unique(keys)
+  .data[[i]] <- match(keys, lvls)
+  .data
+}
+
+tibble(x=c(1,1,1,2), y=c("B", "A", "B", "B"), z="foo") %>% index_by(x,y)
+
+tibble(x=1:3) %>% `[`(c(1,3,2),)
+ 
+tibble(lat=-32.5001, long=-170) %>% distance(lat_from=-32.492, long_from=-169.994)
+
+
+# GEOTRACES --------------------------------------------------
+# import
+mgt_files <- list.files("../", "curated_geotraces_.*.tsv", full.names = TRUE)
+
+mgt0 <- purrr::map(mgt_files, read_tsv) %>%
+  bind_rows() %>%
+  select(sample, cruise=Cruise, lat=Latitude, long=Longitude,
+         depth = `PRESSURE [dbar]`)
+
+mgt_l <- mgt0 %>% split(.$cruise)
+
+# GA02 by -lat
+cruise <- "GA02"
+mgt_l[[cruise]] %<>% count(lat, long) %>%
+  arrange(desc(lat)) %>%
+  index_by(lat, long) %>%
+  #distance(lat_from = .$lat[1], long_from = .$long[1]) %>%
+  distance() %>%
+  left_join(mgt_l[[cruise]], .) %>%
+  arrange(i)
+
+# GA03 by long
+cruise <- "GA03"
+mgt_l[[cruise]] %<>% count(lat, long) %>%
+  arrange(-long) %>%
+  `[`(c(2,1,3:nrow(.)),) %>% # swap first two stations
+  index_by(lat, long) %>%
+  #distance(lat_from = .$lat[1], long_from = .$long[1]) %>%
+  distance() %>%
+  left_join(mgt_l[[cruise]], .) %>%
+  arrange(i)
+
+# GA10 by -long
+cruise <- "GA10"
+mgt_l[[cruise]] %<>% count(lat, long) %>%
+    arrange(-long) %>%
+    index_by(lat, long) %>%
+    # distance(lat_from = .$lat[1], long_from = .$long[1]) %>%
+    distance %>%
+    left_join(mgt_l[[cruise]], .) %>%
+    arrange(i)
+
+# GP13 by long, but with wrapped dd
+cruise <- "GP13"
+mgt_l[[cruise]] %<>% count(lat, long) %>%
+  mutate(long_wrap = ggworldmap:::wrap_dd(long, shift=long_0)) %>%
+    arrange(long_wrap) %>%
+    index_by(lat, long) %>%
+    # distance(lat_from = .$lat[1], long_from = .$long[1]) %>%
+    distance() %>%
+    left_join(mgt_l[[cruise]], .) %>%
+    arrange(i)
+
+mgt1 <- bind_rows(mgt_l)
+
+mgt1
+
+# GOS --------------------------------------------------
+mgo0 <- read_tsv("../GOS_latlong_fromGOLD.tsv") %>%
+  select(
+    sample=`GOLD Biosample ID`,
+    lat=Latitude, long=Longitude) %>%
+  mutate_if(is.character, str_trim) %>% # trim trailing whitespace
+  mutate_at(c("lat", "long"), as.numeric) %>%
+  mutate(depth = NA)
+
+  
+# TARA --------------------------------------------------
+mta0 <- read_tsv("../TARA_stations.tsv") %>%
+  select(sample=Station, Cruise=Campaign, lat=Latitude, long=Longitude,
+         layer_surface=8, layer_dcm=9, layer_epi=10,
+         layer_meso=11, layer_oxymin =12) %>%
+      gather(layer, depth, starts_with("layer")) %>%
+      filter(depth != "not sampled") %>%
+      # meters and whitespace
+      mutate(
+        depth = str_replace_all(depth, " *m", ""),
+        depth = str_replace_all(depth, " ", "")) %>%
+      # there are sometimes multiple depths per field
+      separate(depth, qc(depth_1, depth_2, depth_3), sep="[&,]", fill = "right") %>%
+      gather(dummy, depth, starts_with("depth_")) %>%
+      select(-dummy) %>% filter(!is.na(depth)) %>%
+      # and depth ranges
+      mutate(depth_range = ifelse(str_detect(depth, '[0-9]-[0-9]'), depth, NA)) %>%
+      separate(depth_range, qc(depth_min, depth_max), "-") %>%
+      mutate_at(vars(starts_with("depth_")), as.numeric) %>%
+      mutate(depth = ifelse(is.na(depth_min), depth, rowMeans(cbind(depth_min, depth_max)))) %>%
+      mutate_at("depth", as.numeric)
+
+mgt0
+mgo0
+mta0
+
+# Places --------------------------------------------------
+DMS2Dd <- function(x){
+    as.numeric(char2dms(x, chd = "°", chm = "'", chs = "\""))
+}
+
+## raw coordinates data frame - places
+p0 <- data.frame(
+    name = c("HOT", "BATS"),
+    lat = c(22.75, DMS2Dd("31°40'N")),
+    long = c(-158, DMS2Dd("64°10'W"))
+) %>% mutate(
+    lat_off = lat+7,
+    long_off = long-c(20,30)
+);
+
+
+
+
+mgt2 <- mgt1 %>% count(i, cruise, lat, long) %>% project(proj, long_0)
+mgo1 <- mgo0 %>% count(lat, long) %>% project(proj, long_0)
+mta1 <- mta0 %>% count(lat, long) %>% project(proj, long_0)
+
+p1 <- p0 %>%
+  project(proj, long_0) %>%
+  project(proj, long_0, lat=lat_off, long=long_off)
+
+
+# plot --------------------------------------------------
+
+mgt2_start <- mgt2 %>% filter(i==1)
+mgt2_after <- mgt2 %>% filter(i!=1)
+
+# HOT & BATS gray
+#  geom_segment(data=p1, aes(x=long_off, xend=long, y=lat_off, yend=lat), color="grey#40", size=.3) +
+#  geom_label(data=p1, aes(x=long_off, y=lat_off, label=name), color="grey90", fill="#grey40") +
+
+
+ggw <- ggworldmap(proj = proj, long_0 = long_0,
+                  degree = list("light", long_at = 80, size = 3.5)) +
+  # HOT & BATS
+  geom_segment(data=p1, aes(x=long_off, xend=long, y=lat_off, yend=lat), color="black", size=.4) +
+  geom_label(data=p1, aes(x=long_off, y=lat_off, label=name), color="black", fill="white") +
+  # GOS & TARA
+  geom_point(data=mgo1, aes(x=long, y=lat), shape=1, color="grey40", size=1) +
+  geom_point(data=mta1, aes(x=long, y=lat), shape=19, color="grey40", size=1) +
+  # GEOTRACES
+  ## geom_segment(data=mgt2_start, aes(x=long, xend = long, y=lat+1, yend=lat+4.5), color="black", size=1) +
+  ## geom_segment(data=mgt2_start, aes(x=long, xend = long, y=lat+1, yend=lat+3.8), color="white", size=.2) +
+  ## geom_point(data=mgt2_start, aes(x=long, y=lat, shape=cruise, fill=cruise),
+  ##     color="black", size=2.1) +
+  ## geom_segment(data=mgt2_start, aes(x=long, xend = long, y=lat+1, yend=lat+4.5,
+  ##     color=cruise), size=1.2) +
+  ## geom_segment(data=mgt2_start, aes(x=long, xend = long, y=lat+1, yend=lat+3.8),
+  ##     color="white", size=.4) +
+  ## geom_point(data=mgt2_start, aes(x=long, y=lat, shape=cruise, fill=cruise,
+  ##     color=cruise), size=2.1) +
+  geom_point(data=mgt2, aes(x=long, y=lat, shape=cruise, fill=cruise,
+      color=cruise), size=2.1) +
+#  geom_text(data=mgt2, aes(x=long, y=lat, label = i), nudge_y = 3) +
+  scale_shape_manual("GEOTRACES\nCruises", values=c(21,23,24,25), na.value=15) +
+  scale_fill_discrete("GEOTRACES\nCruises") +
+  scale_color_discrete("GEOTRACES\nCruises", l=45) +
+  # HOT & BATS on top
+  geom_point(data=p1, aes(x=long, y=lat), shape=21, , fill="white", color="black", size=1.3, alpha=1) +
+  # theme
+  theme(legend.position = "none", plot.margin = unit(c(1,1,1,1), "pt"))
+ggw
+
+ggsave("current.png", type='cairo', width = 8, height = 4.5)
+ggsave("current.pdf", width = 8, height = 4.5)
+
+
+# depth profiles --------------------------------------------------
+library(patchwork)
+
+mgt3 <- mgt1
+
+# compress >250 depth at close below 250
+mgt3 <-  mgt1 %>% filter(depth <= 250)
+mgt3d <- mgt1 %>% filter(depth > 250) %>%
+    group_by(cruise, i) %>%
+    arrange(cruise, i, depth) %>%
+    mutate(ii=row_number()) %>%
+    arrange(cruise, i, depth) %>%
+    mutate(depth = 255 + ii * 10) %>%
+    arrange(cruise, i, depth)
+
+
+gg_color_hue <- function(n, l=65) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = l, c = 100)[1:n]
+}
+
+cruises <- mgt2$cruise %>% unique %>% sort
+n = length(cruises)
+fills = gg_color_hue(n) %>% set_names(cruises)
+cols = gg_color_hue(n, l = 45) %>% set_names(cruises)
+
+
+# some theming
+no_y_axis <- theme(
+  axis.title.y = element_blank(),
+  axis.text.y =  element_blank())
+
+no_y_title <- theme(axis.title.y = element_blank())
+no_x_title <- theme(axis.title.x = element_blank())
+no_margin <- theme(plot.margin = unit(c(0,0,0,0), "pt"))
+
+# plot widths
+w <- mgt3 %>% group_by(cruise) %>%
+  summarize(max = max(dist)/1e6) %>%
+  mutate(max = 1.2*max)
+w <- w$max %>% set_names(w$cruise)
+
+str_pad <- function(string, pad){
+  paste0(c(rep(" ", pad), string), collapse = "")
+}
+
+str_pad("ffo", 10)
+
+pretty_labels <- function(breaks){
+  exps <- str_length(as.integer(breaks)) -1
+  bases <- breaks/10^exps
+  print(exps)
+
+  print(bases)
+  labels <- purrr::map2(bases, exps, function(bas, exp){
+    if(is.na(bas) || bas==0) return(bas)
+    bquote(.(bas)%*%10^.(exp))
+  })
+  as.expression(labels)
+}
+
+
+ggcruise <- function(.data, cruise_id, ratio, shape, fill, color, xpad=0, ypad=0, max_depth = 250, title){
+  print(cruise_id)
+  .data %<>% filter(cruise==cruise_id)
+
+  data <- .data %>% filter(depth <= max_depth)
+  
+  data_deep <- .data %>% filter(depth > max_depth) %>%
+    group_by(cruise, i) %>%
+    arrange(cruise, i, depth) %>%
+    mutate(depth = max_depth + 5 + row_number() * 10)
+
+  print(data_deep)
+  
+  breaks <- seq(0,max(.data$dist), 2e6)
+  if(length(breaks) <2) breaks <- c(0, 1e6) # GA10
+  
+  gg <- ggplot(mapping=aes(x=dist, y=depth, xend = dist)) +
+    ggtitle(title) +
+    # data
+    #geom_text(aes(x=0, y=-60, label = cruise_id), hjust=0, size = 3.5, inherit.aes = FALSE) +
+    geom_hline(yintercept=0, linetype=1, color = "grey20", size =.3) +
+    geom_hline(yintercept=250, linetype=3) +
+    #geom_segment(aes(yend=depth-20), data_start, color = color, size=1) +
+    #geom_segment(aes(yend=depth-15), data_start, color = "white", size=.3) +
+    geom_point(data=data_deep, shape=shape, fill=fill, color=color, size=1.5) +
+    geom_point(data=data, shape=shape, fill=fill, color=color, size=1.5) +
+    # scales
+    scale_y_reverse(
+      str_pad("Depth [m]", ypad), limits = c(310,-10), expand = c(0,0),
+      breaks = c(0,125,250),
+      labels = c(0,125,">250")
+    ) +
+    scale_x_continuous(
+        str_pad("Distance along transect [m]", xpad), expand = c(0,0),
+        breaks = breaks,
+        labels = pretty_labels,
+        limits = c(-1e5, max(data$dist) + 1e5)) +
+    theme_bw() + theme(
+      panel.grid.minor=element_blank(),
+      panel.grid.major=element_blank(),
+      aspect.ratio = ratio
+    )
+  #ggsave(paste0(x, ".png"), gg, type="cairo", dpi=300)
+  invisible(gg)
+  
+}
+
+
+hrat = 2.5
+ggc <- list()
+cruise <- "GA02";
+ggc[[cruise]] <- ggcruise(
+  mgt1, cruise, hrat/w[cruise], 21, fills[cruise], cols[cruise],
+  title = expression(paste("GA02 ", scriptstyle("(N to S)")))
+) + no_x_title + no_y_title
+#
+cruise <- "GA03";
+ggc[[cruise]] <- ggcruise(
+  mgt1, cruise, hrat/w[cruise], 23, fills[cruise], cols[cruise],
+  title = expression(paste("GA03 ", scriptstyle("(W to E)")))
+) + no_x_title + no_y_axis
+#
+cruise <- "GA10";
+ggc[[cruise]] <- ggcruise(
+  mgt1, cruise, hrat/w[cruise], 24, fills[cruise], cols[cruise],
+  title = expression(paste("GA10 ", scriptstyle("(E to W)")))
+) + no_x_title + no_y_axis
+#
+cruise <- "GP13"; # 23 (square) or 24 (triangle)
+ggc[[cruise]] <- ggcruise(
+  mgt1, cruise, hrat/w[cruise], 25, fills[cruise], cols[cruise], 100, 32,
+  title = expression(paste("GP13 ", scriptstyle("(W to E)"))))
+gg <-
+  (ggc[["GA02"]]) /
+  (ggc[["GP13"]] + plot_spacer() + ggc[["GA03"]] + plot_spacer() + ggc[["GA10"]] +
+    plot_layout(5, widths=c(w["GP13"], 0, w["GA03"], 0, w["GA10"])))
+# widths=c(widths[c(2,4)], .73*(sum(widths[c(1,3)])-sum(widths[c(2,4)]))
+# .73
+gg
+
+ggsave("depth-profiles.png", gg, type = "cairo", width = 8, height = 3)
+ggsave("depth-profiles.pdf", gg, width = 8, height = 3)
+#+END_SRC
