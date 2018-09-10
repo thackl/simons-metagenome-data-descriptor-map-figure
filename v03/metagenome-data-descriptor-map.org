@@ -252,8 +252,8 @@ ggw <- ggworldmap(proj = proj, long_0 = long_0,
   theme(legend.position = "none", plot.margin = unit(c(1,1,1,1), "pt"))
 ggw
 
-ggsave("current.png", type='cairo', width = 8, height = 4.5)
-ggsave("current.pdf", width = 8, height = 4.5)
+ggsave("map.png", type='cairo', width = 8, height = 4.5)
+ggsave("map.pdf", width = 8, height = 4.5)
 
 
 # depth profiles --------------------------------------------------
