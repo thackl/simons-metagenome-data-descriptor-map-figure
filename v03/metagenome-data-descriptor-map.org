@@ -1,6 +1,7 @@
-
+* get raw data
 
 #+BEGIN_SRC sh
+mkdir data && cd data
 (cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga02.tsv) > curated_geotraces_metadata_ga02.tsv;
 (cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga03.tsv) > curated_geotraces_metadata_ga03.tsv;
 (cd /home/thackl/projects/research/metadata/geotraces_idp && git show 19a830d8ea:curated_geotraces_metadata_ga10.tsv) > curated_geotraces_metadata_ga10.tsv;
@@ -16,84 +17,30 @@ sed -n '/^Campaign/,$p' TARA_reg_stations.tab.tsv |
 
 #+END_SRC
 
+* read and prep data
 
 #+BEGIN_SRC R
 library(tidyverse)
 library(stringr)
-qc <- wrapr::qc
-
 library(sp)
-devtools::load_all("/home/thackl/projects/coding/code/ggworldmap", export_all=FALSE)
+library(geosphere)
+library(maptools)
+library(rgeos)
+library(patchwork)
+
+devtools::install_github("thackl/thacklr")
+devtools::install_github("thackl/ggworldmap")
+library(thacklr)
+library(ggworldmap)
 
 # rotate and project --------------------------------------------------
 # need this here, need long_0 to get distances right
 proj <- "robin"
 long_0 <- -90  # center in Pacific
 
-
-# distances --------------------------------------------------
-library(geosphere)
-
-distance <- function(.data, lat = lat, long = long, lat_from = NULL, long_from = NULL, dist_col = "dist", along = TRUE, ...){
-
-  ll_vars <- ggworldmap:::vars_lat_long(names(.data), !! rlang::enquo(lat), !! rlang::enquo(long))
-
-  ll <- as.matrix(.data[rev(ll_vars)])
-  
-  if(is.null(long_from) && is.null(lat_from)){
-    dists <- geosphere::distVincentyEllipsoid(ll, ...)
-  }else{
-    dists <- geosphere::distVincentyEllipsoid(ll, c(long_from, lat_from), ...)
-  }
-
-  if(is.null(dist_col)) return(dists)
-  # prepend NA in case of sequential distances
-  if(length(dists) == nrow(.data) - 1) dists <- c(0, dists)
-
-  if(along) dists <- cumsum(dists)
-  
-  .data[dist_col] <- dists
-  .data
-}
- 
-tibble(lat=-32.5001, long=-170) %>%
-  distance(lat_from=-32.492, long_from=-169.994)
-
-stations <- tibble(
-  lat=c(50,55,60),
-  long=c(180,180,180)
-)
-# cumulative distance between transect stations
-stations %>% distance
-
-# distance to almost Greenwich
-stations %>% distance(lat_from=0, long_from=0, along=FALSE)
-
-
-## add indices, preserve order (first occurence)
-index_by <- function(.data, ...){
-  keys <- select(.data, ...) %>% apply(1, paste0, collapse="_")
-
-  if(length(keys) == 0) stop("no keys to index by found\n")
-
-  i <- "i"
-  while(i %in% names(.data)) i <- paste0(i,"i")
-  
-  lvls <- unique(keys)
-  .data[[i]] <- match(keys, lvls)
-  .data
-}
-
-tibble(x=c(1,1,1,2), y=c("B", "A", "B", "B"), z="foo") %>% index_by(x,y)
-
-tibble(x=1:3) %>% `[`(c(1,3,2),)
- 
-tibble(lat=-32.5001, long=-170) %>% distance(lat_from=-32.492, long_from=-169.994)
-
-
 # GEOTRACES --------------------------------------------------
 # import
-mgt_files <- list.files("../", "curated_geotraces_.*.tsv", full.names = TRUE)
+mgt_files <- list.files("../data/", "curated_geotraces_.*.tsv", full.names = TRUE)
 
 mgt0 <- purrr::map(mgt_files, read_tsv) %>%
   bind_rows() %>%
@@ -149,7 +96,7 @@ mgt1 <- bind_rows(mgt_l)
 mgt1
 
 # GOS --------------------------------------------------
-mgo0 <- read_tsv("../GOS_latlong_fromGOLD.tsv") %>%
+mgo0 <- read_tsv("../data/GOS_latlong_fromGOLD.tsv") %>%
   select(
     sample=`GOLD Biosample ID`,
     lat=Latitude, long=Longitude) %>%
@@ -159,7 +106,7 @@ mgo0 <- read_tsv("../GOS_latlong_fromGOLD.tsv") %>%
 
   
 # TARA --------------------------------------------------
-mta0 <- read_tsv("../TARA_stations.tsv") %>%
+mta0 <- read_tsv("../data/TARA_stations.tsv") %>%
   select(sample=Station, Cruise=Campaign, lat=Latitude, long=Longitude,
          layer_surface=8, layer_dcm=9, layer_epi=10,
          layer_meso=11, layer_oxymin =12) %>%
@@ -200,8 +147,13 @@ p0 <- data.frame(
 );
 
 
+#+END_SRC
 
+* plot the world
 
+[[file:map.png]]
+
+#+BEGIN_SRC R
 mgt2 <- mgt1 %>% count(i, cruise, lat, long) %>% project(proj, long_0)
 mgo1 <- mgo0 %>% count(lat, long) %>% project(proj, long_0)
 mta1 <- mta0 %>% count(lat, long) %>% project(proj, long_0)
@@ -255,10 +207,14 @@ ggw
 ggsave("map.png", type='cairo', width = 8, height = 4.5)
 ggsave("map.pdf", width = 8, height = 4.5)
 
+#+END_SRC
 
-# depth profiles --------------------------------------------------
-library(patchwork)
 
+* plot depth-profiles
+
+[[file:depth-profiles.png]]
+
+#+BEGIN_SRC R
 mgt3 <- mgt1
 
 # compress >250 depth at close below 250

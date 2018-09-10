@@ -1,6 +1,9 @@
+
+Biller, S. J., Berube, P. M., Dooley, K., Williams, M., Satinsky, B. M., Hackl, T., … Chisholm, S. W. (2018). *Marine microbial metagenomes sampled across space and time*. Scientific Data, 5, 180176. https://doi.org/10.1038/sdata.2018.176
+
 Figure 1: GEOTRACES metagenomic sampling locations.
 
-Biller, S. J., Berube, P. M., Dooley, K., Williams, M., Satinsky, B. M., Hackl, T., … Chisholm, S. W. (2018). Marine microbial metagenomes sampled across space and time. Scientific Data, 5, 180176. https://doi.org/10.1038/sdata.2018.176
+[[v03/metagenome-data-descriptor-map.org][Full code]]
 
 [[file:v03/map.png]]
 
